@@ -1,0 +1,10 @@
+<?php
+
+echo chmod("readme.txt",0444);
+echo substr(decoct(fileperms("readme.txt")),2)."<br>";
+
+// echo chmod("readme.txt",0600);
+// echo chmod("readme.txt",0755);
+// echo chmod("readme.txt",0222);
+
+?>
