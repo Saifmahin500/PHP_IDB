@@ -1,0 +1,92 @@
+[
+  {
+    "Id": 1,
+    "Name": "Saif Mahin",
+    "Age": 25,
+    "Gender": "Male",
+    "Email": "saifmahin@example.com",
+    "Phone": "+8801710000001",
+    "Photo": "https://randomuser.me/api/portraits/men/1.jpg"
+  },
+  {
+    "Id": 2,
+    "Name": "Anika Sultana",
+    "Age": 22,
+    "Gender": "Female",
+    "Email": "anika22@example.com",
+    "Phone": "+8801710000002",
+    "Photo": "https://randomuser.me/api/portraits/women/2.jpg"
+  },
+  {
+    "Id": 3,
+    "Name": "Riyad Hossain",
+    "Age": 28,
+    "Gender": "Male",
+    "Email": "riyad.hossain@example.com",
+    "Phone": "+8801710000003",
+    "Photo": "https://randomuser.me/api/portraits/men/3.jpg"
+  },
+  {
+    "Id": 4,
+    "Name": "Mim Akter",
+    "Age": 20,
+    "Gender": "Female",
+    "Email": "mim.aktr@example.com",
+    "Phone": "+8801710000004",
+    "Photo": "https://randomuser.me/api/portraits/women/4.jpg"
+  },
+  {
+    "Id": 5,
+    "Name": "Tanvir Ahmed",
+    "Age": 30,
+    "Gender": "Male",
+    "Email": "tanvir30@example.com",
+    "Phone": "+8801710000005",
+    "Photo": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "Id": 6,
+    "Name": "Sharmin Akhter",
+    "Age": 26,
+    "Gender": "Female",
+    "Email": "sharmin.ak@example.com",
+    "Phone": "+8801710000006",
+    "Photo": "https://randomuser.me/api/portraits/women/6.jpg"
+  },
+  {
+    "Id": 7,
+    "Name": "Nayem Islam",
+    "Age": 24,
+    "Gender": "Male",
+    "Email": "nayem24@example.com",
+    "Phone": "+8801710000007",
+    "Photo": "https://randomuser.me/api/portraits/men/7.jpg"
+  },
+  {
+    "Id": 8,
+    "Name": "Mehjabin Chowdhury",
+    "Age": 23,
+    "Gender": "Female",
+    "Email": "mehjabin23@example.com",
+    "Phone": "+8801710000008",
+    "Photo": "https://randomuser.me/api/portraits/women/8.jpg"
+  },
+  {
+    "Id": 9,
+    "Name": "Arif Rahman",
+    "Age": 27,
+    "Gender": "Male",
+    "Email": "arif.rahman@example.com",
+    "Phone": "+8801710000009",
+    "Photo": "https://randomuser.me/api/portraits/men/9.jpg"
+  },
+  {
+    "Id": 10,
+    "Name": "Sumaiya Akter",
+    "Age": 21,
+    "Gender": "Female",
+    "Email": "sumaiya21@example.com",
+    "Phone": "+8801710000010",
+    "Photo": "https://randomuser.me/api/portraits/women/10.jpg"
+  }
+]
