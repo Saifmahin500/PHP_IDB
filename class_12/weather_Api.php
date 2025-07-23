@@ -86,6 +86,7 @@ if (isset($_GET['city'])) {
     .heading{
         color: white;
         margin-bottom: 25px;
+        margin-top: 30px;
         font-size: 48px;
     }
     
