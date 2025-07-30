@@ -1,0 +1,244 @@
+create database online_course;
+
+use  online_course;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    address TEXT,
+    photo VARCHAR(200),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  description TEXT,
+  create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE instructors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(12),
+    bio TEXT,
+    photo VARCHAR(200),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    category_id INT,
+    instructor_id INT,
+    start_date DATE,
+    price DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
+    FOREIGN KEY (instructor_id) REFERENCES instructors(id) ON DELETE SET NULL
+);
+
+CREATE TABLE enrollment (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    enrolled_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pending', 'approved', 'completed') DEFAULT 'pending',
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    transaction_id VARCHAR(100) UNIQUE,
+    amount DECIMAL(10,2) NOT NULL,
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_method ENUM('cash', 'card', 'bkash', 'nagad') DEFAULT 'cash',
+    status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
+
+--jodi lage alter koro---
+ALTER TABLE payments ADD COLUMN installment_id INT;
+
+
+----jamela korte pare-----
+ALTER TABLE payments
+ADD CONSTRAINT fk_installment_id
+FOREIGN KEY (installment_id) REFERENCES installments(id);
+
+
+CREATE TABLE installments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT,
+  course_id INT,
+  payment_id int,
+  installment_year INT,
+  installment_month INT,
+  amount DECIMAL(10,2),
+  payment_date date,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (student_id) REFERENCES students(id),
+  FOREIGN KEY (course_id) REFERENCES courses(id),
+  FOREIGN KEY (payment_id) REFERENCES payments(id)
+);
+
+
+CREATE TABLE dues (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    due_month INT,
+    due_amount DECIMAL(10,2),
+    is_cleared TINYINT(1) DEFAULT 0,
+    cleared_on DATE,
+    installment_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    FOREIGN KEY (installment_id) REFERENCES installments(id) ON DELETE SET NULL
+);
+
+
+
+//insert data 
+
+INSERT INTO categories (name, description)
+VALUES 
+('Web Development', 'Courses related to web technologies like HTML, CSS, JavaScript, PHP'),
+('Data Science', 'Courses on data analysis, machine learning, statistics'),
+('Mobile App Development', 'Courses for Android and iOS app development'),
+('Cyber Security', 'Courses related to ethical hacking and information security'),
+('Graphic Design', 'Courses on Photoshop, Illustrator, UI/UX design');
+
+SELECT * FROM categories;
+
+INSERT INTO instructors (name, email, phone, bio, photo)
+VALUES 
+('Saif Uddin', 'saif@example.com', '01800000001', 'Expert in web development and teaching.', 'saif.jpg'),
+('Kamal Hossain', 'kamal@example.com', '01800000002', 'Specialist in data science and AI.', 'kamal.jpg'),
+('Jamal Ahmed', 'jamal@example.com', '01800000003', 'Professional mobile app developer.', 'jamal.jpg'),
+('Mahin Rahman', 'mahin@example.com', '01800000004', 'Cyber security trainer and consultant.', 'mahin.jpg'),
+('Ohin Chowdhury', 'ohin@example.com', '01800000005', 'Experienced UI/UX and graphic designer.', 'ohin.jpg');
+
+
+SELECT * FROM instructors;
+
+INSERT INTO courses (title, description, instructor_id, category_id, price)
+VALUES
+('Complete Web Development Bootcamp', 'Learn full-stack web development from scratch.', 1, 1, 150),
+('Data Science with Python', 'Introduction to data science using Python.', 2, 2, 200),
+('Android App Development', 'Build native Android apps using Java and Kotlin.', 3, 3, 180),
+('Ethical Hacking Basics', 'Learn fundamentals of ethical hacking and penetration testing.', 4, 4, 170),
+('UI/UX Design Fundamentals', 'Master the basics of user interface and user experience design.', 5, 5, 130);
+
+SELECT * FROM courses ;
+
+INSERT INTO courses (title, description, category_id, instructor_id, start_date, price)
+VALUES 
+('Full Stack Web Development', 'Learn HTML, CSS, JavaScript, PHP, and MySQL in one complete course.', 1, 1, '2025-08-01', 499.99),
+('Machine Learning with Python', 'Build predictive models using scikit-learn, pandas, and matplotlib.', 2, 2, '2025-08-05', 599.00),
+('iOS App Development', 'Create beautiful iOS apps using Swift and Xcode.', 3, 3, '2025-08-10', 450.50),
+('Cyber Security Fundamentals', 'Understand ethical hacking, penetration testing, and digital forensics.', 4, 4, '2025-08-15', 550.00),
+('Advanced UI/UX Design', 'Master Figma, Adobe XD, and design principles with real-world projects.', 5, 5, '2025-08-20', 400.00);
+
+
+INSERT INTO students (name, email) VALUES
+('Rahim Uddin', 'rahim@example.com'),
+('Sabrina Akter', 'sabrina@example.com'),
+('Jayed Islam', 'jayed@example.com'),
+('Nabila Yasmin', 'nabila@example.com'),
+('Fahim Chowdhury', 'fahim@example.com');
+
+INSERT INTO enrollment (student_id, course_id, status)
+VALUES
+(1, 1, 'approved'),
+(2, 2, 'pending'),
+(3, 3, 'completed'),
+(4, 4, 'approved'),
+(5, 5, 'pending');
+
+INSERT INTO payments (student_id, course_id, transaction_id, amount, payment_method, status)
+VALUES 
+(1, 11, 'TXN100001', 499.99, 'bkash', 'completed'),
+(2, 12, 'TXN100002', 599.00, 'card', 'completed'),
+(3, 13, 'TXN100003', 450.50, 'nagad', 'pending'),
+(4, 14, 'TXN100004', 550.00, 'bkash', 'completed'),
+(5, 15, 'TXN100005', 400.00, 'cash', 'failed');
+
+INSERT INTO installments (student_id, course_id, payment_id, installment_year, installment_month, amount, payment_date)
+VALUES
+(1, 11, 6, 2025, 8, 250.00, '2025-08-01'),
+(2, 12, 7, 2025, 8, 300.00, '2025-08-05'),
+(3, 13, 8, 2025, 8, 200.00, '2025-08-10'),
+(4, 14, 9, 2025, 9, 275.00, '2025-09-01'),
+(5, 15, 10, 2025, 9, 150.00, '2025-09-10');
+
+
+
+INSERT INTO dues (student_id, course_id, due_month, due_amount, is_cleared, cleared_on, installment_id)
+VALUES 
+(1, 11, 7, 2000.00, 0, NULL, 11),
+(2, 12, 8, 1500.00, 1, '2025-08-10', 12),
+(3, 13, 8, 1800.00, 0, NULL, 13),
+(4, 14, 9, 1000.00, 1, '2025-09-15', 14),
+(5, 15, 9, 1200.00, 0, NULL, 15);
+
+-------------------------------------------------------
+join
+-------------------------------------------------------
+-----------inner join -----------------
+SELECT 
+    students.name AS student_name,
+    courses.title AS course_title,
+    dues.due_month,
+    dues.due_amount,
+FROM dues
+INNER JOIN students ON dues.student_id = students.id
+INNER JOIN courses ON dues.course_id = courses.id;
+
+--------Left join -----------
+SELECT 
+    d.id AS due_id,
+    s.name AS student_name,
+    c.title AS course_title,
+    d.due_month,
+    d.due_amount
+FROM dues d
+LEFT JOIN students s ON d.student_id = s.id
+LEFT JOIN courses c ON d.course_id = c.id;
+
+-------right join -----------------
+
+SELECT 
+    s.id AS student_id,
+    s.name AS student_name,
+    d.due_month,
+    d.due_amount
+FROM dues d
+RIGHT JOIN students s ON d.student_id = s.id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
