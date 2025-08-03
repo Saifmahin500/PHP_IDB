@@ -58,7 +58,7 @@ $students = $objCrudAdmin->display_data();
         </div>
 
         <div class="col-md-4">
-            <label class="form-label fw-bold">Product Stock</label>
+            <label class="form-label fw-bold">Product Stocks</label>
             <input type="number" class="form-control" name="p_stock" placeholder="Available stock" required>
         </div>
 
@@ -83,7 +83,7 @@ $students = $objCrudAdmin->display_data();
     </form>
 </div>
 
-    <!-- <div class="container my-4 p-4 shadow">
+    <div class="container my-4 p-4 shadow">
         <table class="table">
             <thead>
                 <tr>
@@ -99,25 +99,27 @@ $students = $objCrudAdmin->display_data();
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = mysqli_fetch_assoc($students)) {  ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['std_name']; ?></td>
-                        <td><?php echo $row['std_roll']; ?></td>
-                        <td><img src="upload/<?php echo $row['std_img']; ?>" width="50"></td>
-                        <td>
-                            <a class="btn btn-success" href="#">Edit</a>
-                            <a class="btn btn-warning" href="#">Delete</a>
-                        </td>
-                    </tr>
-                <?php } ?>
+              <tr>
+                <td>01</td>
+              <td>T-shirt</td>
+              <td></td>
+              <td>05</td>
+              <td>500</td>
+              <td>Men Cloths</td>
+              <td>1001</td>
+              <td>01/20/22</td>
+              <td>
+                <a class="btn btn-success" href="#">Edit</a>
+                <a class="btn btn-warning" href="#">Delete</a>
+              </td>
+              </tr>
 
             </tbody>
 
         </table>
 
 
-    </div> -->
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

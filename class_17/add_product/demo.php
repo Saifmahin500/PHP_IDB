@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-md-4">
-            <label class="form-label fw-bold">Product Price</label>
+            <label class="form-label fw-bold">Product Prices</label>
             <input type="number" class="form-control" name="p_price" placeholder="Enter price" required>
         </div>
 
