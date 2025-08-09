@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		$admin = $stmt->fetch(PDO::FETCH_ASSOC);
 		if(password_verify($password, $admin['password']))
 		{
-			$_SESSION['admin_logged_in'] = true;
+			$_SESSION['admin_logged_in'] = $admin['id'];
 			$_SESSION['admin_username'] = $admin['username'];
 			header("Location: index.php");
 			exit;

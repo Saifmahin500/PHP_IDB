@@ -186,7 +186,7 @@ $cats = $DB_con->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC);
 			<button type="submit" name="update" class="btn btn-success">Update Product</button>
 
 			<a href="?page=products" class="btn btn-secondary">Back</a>
-		</form>>
+		</form>
 	</div>
 </body>
 </html>
