@@ -17,21 +17,31 @@ require_once 'partials/navbar.php';
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="assets/images/07.jpg" class="d-block w-100 slider-img" alt="slide1">
+            <img src="assets/images/Weekly Deals Top Slide WEB.jpeg" class="d-block w-100 slider-img" alt="slide1">
           </div>
           <div class="carousel-item">
-            <img src="assets/images/06.jpg" class="d-block w-100 slider-img" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/images/08.jpg" class="d-block w-100 slider-img" alt="...">
+            <img src="assets/images/Nagad ans ebl Cat banner Web.jpeg" class="d-block w-100 slider-img" alt="...">
             <!-- <div class="carousel-caption d-none-block">
               <h5>Welcome to My shop</h5>
               <p>Lorem ipsum dolor sit amet.</p>
             </div> -->
+            </div>
+            <div class="carousel-item">
+            <img src="assets/images/1100508_Power_Top_Slider_web_1015_500.gif" class="d-block w-100 slider-img" alt="...">
           </div>
+            <div class="carousel-item">
+            <img src="assets/images/RFL.jpeg" class="d-block w-100 slider-img" alt="...">
+          </div>
+            <div class="carousel-item">
+            <img src="assets/images/Web Chook_Hood_Top_Slider_1015_500 (1).gif" class="d-block w-100 slider-img" alt="...">
+          </div>
+          
         </div>
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

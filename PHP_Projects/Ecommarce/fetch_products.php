@@ -6,12 +6,12 @@ $catIds = is_array($catIds) ? array_filter($catIds) : [];
 
 if ($catIds) {
 	$in = implode(',', array_fill(0, count($catIds), '?'));
-	$sql = "SELECT p.*, c.category_name, a.sizes, a.colors FROM products p LEFT JOIN categories c ON p.category_id = c.id LEFT JOIN attributes a ON a.product_id = p.id WHERE p.category_id IN ($in) ORDER BY p.id DESC";
+	$sql = "SELECT p.*, c.category_name, a.sizes, a.colors FROM products p LEFT JOIN categories c ON p.category_id = c.id LEFT JOIN attributes a ON a.product_id = p.id WHERE p.category_id IN ($in) ORDER BY p.product_name ASC";
 
 	$stmt = $DB_con->prepare($sql);
 	$stmt->execute($catIds);
 } else {
-	$sql = "SELECT p.*, c.category_name, a.sizes, a.colors FROM products p LEFT JOIN categories c ON p.category_id = c.id LEFT JOIN attributes a ON a.product_id = p.id ORDER BY p.id DESC";
+	$sql = "SELECT p.*, c.category_name, a.sizes, a.colors FROM products p LEFT JOIN categories c ON p.category_id = c.id LEFT JOIN attributes a ON a.product_id = p.id ORDER BY p.product_name ASC";
 	$stmt = $DB_con->query($sql);
 }
 
