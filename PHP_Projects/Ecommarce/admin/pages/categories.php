@@ -16,6 +16,10 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<style type="text/css">
+		body {
+ 		 overflow-x: hidden;
+ 		}
+
 		.thumbnail-img
 		{
 			width: 80px;

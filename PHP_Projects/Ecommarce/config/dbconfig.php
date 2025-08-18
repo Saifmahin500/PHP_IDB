@@ -1,5 +1,8 @@
 <?php
 
+define('BASE_URL', 'http://localhost/PHP/PHP_Projects/Ecommarce');
+
+
 class Database
 {
 	private $host = "localhost";
