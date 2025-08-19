@@ -1,5 +1,33 @@
-
 <div class="sidebar">
+	<div class="text-center mb-3">
+		<?php
+
+			if(!isset($_SESSION)) session_start();
+			require_once __DIR__.'/../dbConfig.php';
+			$admin_id = $_SESSION['admin_logged_in'] ?? null;
+
+			$adminPhoto = 'default.jpg';
+			$adminName = 'Admin';
+
+			if($admin_id)
+			{
+				$stmt = $DB_con->prepare("SELECT * FROM admins WHERE id =?");
+				$stmt->execute([$admin_id]);
+				$admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+				if($admin)
+				{
+					$adminPhoto = !empty($admin['photo']) ? $admin['photo'] : 'default.jpg';
+					$adminName = $admin['username'];
+				}
+			}		
+
+		?>
+
+		<img src="/../uploads/admins/<?= htmlspecialchars($adminPhoto) ?>" alt="No photo found" class="rounded-circle" width="80" height="80">
+
+		<h5 class="mt-2"><?= htmlspecialchars($adminName) ?></h5>
+	</div>
 	<h4><i class="fas fa-user-cog"></i> Admin Panel</h4>
 
 	<a href="index.php?page=dashboard">
@@ -16,6 +44,10 @@
 
 	<a href="index.php?page=attributes">
 		<i class="fas fa-tags"></i> Attributes
+	</a>
+
+	<a href="index.php?page=admin_profile">
+		<i class="fas fa-tags"></i> Change Profile
 	</a>
 
 	<a href="#inventorySubmenu" data-toggle="collapse" class="dropdown-toggle">
@@ -36,6 +68,10 @@
 			<i class="fas fa-chart-bar"></i> Report
 		</a>
 	</div>
+
+	<a href="../index.php" style="color: white; text-decoration: none;">
+            <i class="fa-solid fa-eye mr-2"></i> View website
+        </a>
 
 	<a href="logout.php">
 		<i class="fas fa-sign-out-alt"></i> Logout

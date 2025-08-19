@@ -112,7 +112,7 @@ $userName = htmlspecialchars($userName, ENT_QUOTES, 'UTF-8');
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="index.php?view=all">
+          <a class="nav-link " href="<?= $BASE ?>/contact_us.php">
             Contact Us
           </a>
         </li>
