@@ -133,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		<div class="form-group">
 			<label>Profile Photo:</label>
 			<?php if($admin['photo']):?>
-			<img src="/../uploads/admins/<?= $admin['photo'] ?>" width="80" class="rounded mb-2" alt="no image found">
+			<img src="../uploads/admins/<?= $admin['photo'] ?>" width="80" class="rounded mb-2" alt="no image found">
 			<?php endif; ?>
 			<input type="file" name="photo" class="form-control-file">
 		</div>
