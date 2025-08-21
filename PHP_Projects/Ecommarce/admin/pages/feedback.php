@@ -16,6 +16,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
+
+
+
+
 <div class="d-flex justify-content-between align-items-center mb-3">
 	<h4 class="mb-0">user Feedback</h4>
 	<span class="badge badge-info"> Total: <?= count($rows) ?></span>
@@ -100,27 +104,24 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			if(!txt) {alert("Please type your reply"); return;}
 
 			$.ajax({
-
-				url: 'ajax/send_reply.php',
-				method: 'POST',
-				dataType: 'json',
-				data: {id: id, reply: txt}
-			}).done(function(d){
-
-					if(d && d.ok)
-					{
-						alert('Reply Sent1');
-						location.reload();
-					}
-
-					else
-					{
-						alert((d && d.err) ? d.err : 'Failed to sent reply');
-					}
-			}).fail(function(xhr){
-				alert(xhr.responseText || 'Unexpected error');
-				console.error('send reply failed', xhr.status, xhr.responseText);
-			});
+    url: 'ajax/send_reply.php',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+        feedback_id: id,  // এখানে নাম ঠিক করা হলো
+        reply: txt
+    }
+}).done(function(d){
+    if(d && d.ok){
+        alert('Reply Sent!');
+        location.reload();
+    } else {
+        alert((d && d.error) ? d.error : 'Failed to send reply');
+    }
+}).fail(function(xhr){
+    alert(xhr.responseText || 'Unexpected error');
+    console.error('send reply failed', xhr.status, xhr.responseText);
+});
 		});
 	});
 </script>
