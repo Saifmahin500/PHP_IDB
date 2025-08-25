@@ -26,7 +26,7 @@ try {
     }
 
     // Input validation
-    $id = (int)($_POST['feedback_id'] ?? 0);
+    $id = (int)($_POST['id'] ?? 0);
     $text = trim($_POST['reply'] ?? '');
 
     if($id <= 0 || $text === '') {
