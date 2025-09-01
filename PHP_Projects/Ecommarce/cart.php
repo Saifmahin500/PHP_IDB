@@ -18,10 +18,15 @@ $grand = 0.00;
 
 if($cartId)
 {
-	$sql = "SELECT ci.id AS item_id, ci.product_id, ci.qty, ci.unit_price, p.product_name, p.product_image FROM cart_items ci JOIN products p ON p.id = ci.product_id WHERE ci.product_id = ?";
-	$st = $DB_con->prepare($sql);
-	$st->execute([$cartId]);
-	$items = $st->fetchAll(PDO::FETCH_ASSOC);
+	$sql = "SELECT ci.id AS item_id, ci.product_id, ci.qty, ci.unit_price, 
+               p.product_name, p.product_image 
+        FROM cart_items ci 
+        JOIN products p ON p.id = ci.product_id 
+        WHERE ci.cart_id = ?";
+$st = $DB_con->prepare($sql);
+$st->execute([$cartId]);
+$items = $st->fetchAll(PDO::FETCH_ASSOC);
+
 
 	foreach ($items as $it) 
 	{
